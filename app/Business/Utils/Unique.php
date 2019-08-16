@@ -16,7 +16,7 @@ class Unique
      */
     const CODE_DEFAULT         = 400;           // 全局未知道错误
     const CODE_INVALID_PARAM   = 4001;          // 参数错误
-    const CODE_USER_NO_LOGIN   = 4003;
+    const CODE_USER_NO_LOGIN   = 401;
     const ERR_USER_NO_LOGIN    = '请先登录';
 
     const CODE_USERNAME_EXIST  = 1001;

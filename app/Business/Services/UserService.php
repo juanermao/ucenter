@@ -84,7 +84,7 @@ class UserService
     public static function setCacheToken($token, $userInfo)
     {
         $expire = 60 * 60 * 24 * 30;     // 30天有效期（单位:秒）
-        setcookie(self::COOKIE_TOKEN_KEY, $token, time() + $expire);
+        setcookie(self::COOKIE_TOKEN_KEY, $token, time() + $expire, '/');
         return Redis::set(self::getTokenKey($token), json_encode($userInfo), 'EX', $expire);
     }
 
@@ -96,7 +96,7 @@ class UserService
      */
     public static function clearCacheToken($token)
     {
-        setcookie(self::COOKIE_TOKEN_KEY, '', time() - 1);
+        setcookie(self::COOKIE_TOKEN_KEY, '', time() - 1, '/');
         return Redis::del(self::getTokenKey($token));
     }
 

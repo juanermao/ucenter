@@ -87,6 +87,7 @@
             }
 
             alert('登录成功');
+            location.href = "{{ $appUrl }}";
         });
     });
 

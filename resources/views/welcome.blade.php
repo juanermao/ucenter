@@ -1,15 +1,4 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
+@include('layout.header')
         <style>
             html, body {
                 background-color: #fff;
@@ -65,19 +54,9 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
                 <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+                    <a href="{{ url('/home') }}">Home</a>
                 </div>
-            @endif
 
             <div class="content">
                 <div class="title m-b-md">
@@ -95,5 +74,46 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            $(function () {
+                var api_token = getCookie('api_token');
+                var params = {"api_token": api_token};
+                $.ajax({
+                    url:'/api/user/info',
+                    type:'get',
+                    data: params,
+                    dataType:'json',
+                    statusCode: {
+                        401: function() {
+                            location.href = '/auth/login';
+                        }
+                    },
+                    success:function(data){
+                        if (data.error == 401) {
+                            location.href = '/auth/login';
+                            return;
+                        }
+                    }
+                });
+            });
+        </script>
+
     </body>
 </html>
