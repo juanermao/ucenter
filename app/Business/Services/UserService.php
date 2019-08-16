@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Redis;
 
 class UserService
 {
-    const COOKIE_TOKEN_KEY      = 'token';
+    const COOKIE_TOKEN_KEY      = 'api_token';
     const CONFIG_USERNAME_TITLE = 'incr_username';
 
     /**
@@ -53,8 +53,8 @@ class UserService
     public static function saveLoginInfo($userInfo)
     {
         $user = UserModel::getUserById($userInfo['id']);
-        if (! empty($user['token'])) {
-            self::clearCacheToken($user['token']);
+        if (! empty($user['api_token'])) {
+            self::clearCacheToken($user['api_token']);
         }
 
         $token = md5( sprintf('%d#%s#%d', $user['id'], $user['name'], time()) );
@@ -62,11 +62,11 @@ class UserService
             return false;
         }
 
-        $res['id']      = $user['id'];
-        $res['name']    = $user['name'];
-        $res['tel']     = $user['tel'];
-        $res['visitor'] = $user['visitor'];
-        $res['token']   = $token;
+        $res['id']          = $user['id'];
+        $res['name']        = $user['name'];
+        $res['tel']         = $user['tel'];
+        $res['visitor']     = $user['visitor'];
+        $res['api_token']   = $token;
         if (! self::setCacheToken($token, $res)) {
             return false;
         }
@@ -75,7 +75,7 @@ class UserService
     }
 
     /**
-     * 设置缓存、cookie中的token
+     * 设置缓存、cookie中的api_token
      *
      * @param $token
      * @param $userInfo
@@ -89,7 +89,7 @@ class UserService
     }
 
     /**
-     * 清除缓存中、cookie的token
+     * 清除缓存中、cookie的api_token
      *
      * @param $token
      * @return mixed
@@ -111,13 +111,13 @@ class UserService
     }
 
     /**
-     * 获取token的key
+     * 获取api_token的key
      *
      * @param $token
      * @return string
      */
     public static function getTokenKey($token){
-        return "token:{$token}";
+        return "api_token:{$token}";
     }
 
     /**

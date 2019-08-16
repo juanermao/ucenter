@@ -8,6 +8,7 @@ use App\Business\Utils\Unique;
 use App\Business\Utils\Util;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -65,5 +66,23 @@ class UserController extends Controller
         return $this->echoJson($userInfo);
     }
 
+    public function info(Request $request)
+    {
+        /**
+         * Auth::user()
+         */
+        $userInfo = $request->user()->toArray();
+        return $this->echoJson([
+            'name'    => $userInfo['name'],
+            'tel'     => $userInfo['tel'],
+            'visitor' => $userInfo['visitor'],
+            'from'    => $userInfo['from'],
+        ]);
+    }
+
+    public function noLogin(Request $request)
+    {
+        return $this->echoMsg(Unique::ERR_USER_NO_LOGIN, Unique::CODE_USER_NO_LOGIN);
+    }
 
 }

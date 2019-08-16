@@ -11,7 +11,7 @@ class UserModel extends Model
 
     public static function setTokenById($id, $token)
     {
-        if (! static::where(['id' => $id])->update(['token' => $token])) {
+        if (! static::where(['id' => $id])->update(['api_token' => $token])) {
             return false;
         }
 

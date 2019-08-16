@@ -14,8 +14,10 @@ class Unique
     /**
      * 错误码
      */
-    const CODE_DEFAULT = 400;           // 全局未知道错误
-    const CODE_INVALID_PARAM = 4001;    // 参数错误
+    const CODE_DEFAULT         = 400;           // 全局未知道错误
+    const CODE_INVALID_PARAM   = 4001;          // 参数错误
+    const CODE_USER_NO_LOGIN   = 4003;
+    const ERR_USER_NO_LOGIN    = '请先登录';
 
     const CODE_USERNAME_EXIST  = 1001;
     const ERR_USERNAME_EXIST   = '用户名已存在';
@@ -35,6 +37,7 @@ class Unique
     const ERR_SMSCODE_ERR      = '短信验证码错误';
     const CODE_USERLOGIN_FAIL  = 1009;
     const ERR_USERLOGIN_FAIL   = '登录失败，请稍后重试';
+
 
     /**
      * 其它常量
