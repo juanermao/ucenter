@@ -28,6 +28,13 @@ Route::middleware([])->group(function () {
 });
 
 /**
+ * 测试使用
+ */
+Route::middleware([])->group(function () {
+    Route::get('/get/sms/code', 'TestController@getSmsCode');
+});
+
+/**
  * 需要登录的接口
  */
 Route::middleware('auth:api')->group(function () {

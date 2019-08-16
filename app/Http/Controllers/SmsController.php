@@ -25,6 +25,6 @@ class SmsController extends Controller
             throw new \LogicException(Unique::ERR_SMS_FAIL, Unique::CODE_SMS_FAIL);
         }
 
-        return $this->echoJson(['code' => $code]);
+        return $this->echoJson();
     }
 }
