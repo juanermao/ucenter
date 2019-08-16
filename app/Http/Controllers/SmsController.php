@@ -20,11 +20,11 @@ class SmsController extends Controller
             'tel.min'      => '手机号长度不能小于11位',
         ];
         $inputs = $this->formValidate($inputs, $rules, $message);
-        $res = SmsService::getInstance()->sendCode('zhu', $inputs['tel']);
-        if (! $res) {
+        $code = SmsService::getInstance()->sendCode('zhu', $inputs['tel']);
+        if (! $code) {
             throw new \LogicException(Unique::ERR_SMS_FAIL, Unique::CODE_SMS_FAIL);
         }
 
-        return $this->echoJson();
+        return $this->echoJson(['code' => $code]);
     }
 }

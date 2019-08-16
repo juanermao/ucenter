@@ -46,7 +46,7 @@ class SmsService
 
         // 3.缓存验证码
         $this->setCode($tel, $code);
-        return true;
+        return $code;
     }
 
     /**
