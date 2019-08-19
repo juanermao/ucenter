@@ -40,7 +40,7 @@ class Util
 
     public static function randMd5($str = '')
     {
-        return md5($str . time() . mt_rand());
+        return md5($str . microtime() . mt_rand());
     }
 
 }

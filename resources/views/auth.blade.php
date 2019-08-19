@@ -52,7 +52,7 @@
     $("#login .sendSms").click(function () {
         var tel = $(".tel input").val();
         var params = {"tel": tel};
-        $.get('http://test.ucenter.com/api/sms/send', params, function (data) {
+        $.get('/api/sms/send', params, function (data) {
             if (data.errno !== 0) {
                 alert(data.errmsg);
                 return;
@@ -87,7 +87,7 @@
             }
 
             alert('登录成功');
-            location.href = "{{ $appUrl }}";
+            location.href = "/";
         });
     });
 

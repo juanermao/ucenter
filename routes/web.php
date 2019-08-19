@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/auth/login', function () {
-    return view('auth', ['appUrl' => env('APP_URL')]);
+    return view('auth');
 });
