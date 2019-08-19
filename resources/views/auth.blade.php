@@ -65,7 +65,7 @@
     $("#login .getSms").click(function () {
         var tel = $(".tel input").val();
         var params = {"tel": tel};
-        $.get('http://test.ucenter.com/api/get/sms/code', params, function (data) {
+        $.get('/api/get/sms/code', params, function (data) {
             if (data.errno !== 0) {
                 alert(data.errmsg);
                 return;
@@ -80,7 +80,7 @@
         var code = $(".smsCode input").val();
 
         var params = {"tel": tel, "code": code};
-        $.get('http://test.ucenter.com/api/sms/login', params, function (data) {
+        $.get('/api/sms/login', params, function (data) {
             if (data.errno !== 0) {
                 alert(data.errmsg);
                 return;
