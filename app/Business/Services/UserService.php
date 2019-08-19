@@ -151,4 +151,9 @@ class UserService
     {
         return UserModel::getUserByVisitor($visitor);
     }
+
+    public static function getUserById($uId)
+    {
+        return UserModel::getUserById($uId);
+    }
 }

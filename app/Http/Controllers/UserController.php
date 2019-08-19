@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Business\Services\AuthService;
 use App\Business\Services\SmsService;
 use App\Business\Services\UserService;
 use App\Business\Utils\Unique;
@@ -38,9 +39,16 @@ class UserController extends Controller
         }
 
         if (! $userInfo) {
-            throw new \LogicException(Unique::CODE_USERLOGIN_FAIL, Unique::ERR_USERLOGIN_FAIL);
+            throw new \LogicException(Unique::ERR_USERLOGIN_FAIL, Unique::CODE_USERLOGIN_FAIL);
         }
 
+        // 3.获取code
+        $code = AuthService::getCode($userInfo['id']);
+        if (! $code) {
+            throw new \LogicException(Unique::ERR_USERLOGIN_CODE, Unique::CODE_USERLOGIN_CODE);
+        }
+
+        $userInfo['code'] = $code;
         return $this->echoJson($userInfo);
     }
 
@@ -60,7 +68,7 @@ class UserController extends Controller
         }
 
         if (! $userInfo) {
-            throw new \LogicException(Unique::CODE_USERLOGIN_FAIL, Unique::ERR_USERLOGIN_FAIL);
+            throw new \LogicException(Unique::ERR_USERLOGIN_FAIL, Unique::CODE_USERLOGIN_FAIL);
         }
 
         return $this->echoJson($userInfo);

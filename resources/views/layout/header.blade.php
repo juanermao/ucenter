@@ -16,6 +16,7 @@
         }
     </style>
     <script src="/js/jquery/jquery.js"></script>
+    <script src="/js/util.js"></script>
 </head>
 <body>
     <div id="header">header</div>

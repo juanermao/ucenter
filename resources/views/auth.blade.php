@@ -53,6 +53,8 @@
         var tel = $(".tel input").val();
         var params = {"tel": tel};
         $.get('/api/sms/send', params, function (data) {
+            console.log('===send sms===' + data);
+
             if (data.errno !== 0) {
                 alert(data.errmsg);
                 return;
@@ -66,6 +68,8 @@
         var tel = $(".tel input").val();
         var params = {"tel": tel};
         $.get('/api/get/sms/code', params, function (data) {
+            console.log('===get sms===' + data);
+
             if (data.errno !== 0) {
                 alert(data.errmsg);
                 return;
@@ -81,13 +85,24 @@
 
         var params = {"tel": tel, "code": code};
         $.get('/api/sms/login', params, function (data) {
+            console.log('===sms login===' + data);
+
             if (data.errno !== 0) {
                 alert(data.errmsg);
                 return;
             }
 
             alert('登录成功');
-            location.href = "/";
+            var code = data.data.code;
+            var redirect_url = getQueryString('redirect_url');
+            if (redirect_url) {
+                redirect_url = redirect_url + "?code=" + code;
+                console.log("===redirect_url===" + redirect_url);
+                location.href = redirect_url;
+            }else{
+                location.href = "/";
+            }
+
         });
     });
 

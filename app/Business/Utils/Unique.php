@@ -37,7 +37,16 @@ class Unique
     const ERR_SMSCODE_ERR      = '短信验证码错误';
     const CODE_USERLOGIN_FAIL  = 1009;
     const ERR_USERLOGIN_FAIL   = '登录失败，请稍后重试';
-
+    const CODE_USERLOGIN_CODE  = 10010;
+    const ERR_USERLOGIN_CODE   = '登录失败，请稍后重试[code err]';
+    const CODE_VERIFYCODE_FAIL = 10011;
+    const ERR_VERIFYCODE_FAIL  = 'code不存在或者已失效';
+    const CODE_GETTOKEN_FAIL   = 10012;
+    const ERR_GETTOKEN_FAIL    = '获取access_token失败';
+    const CODE_APPID_INVALID   = 10013;
+    const ERR_APPID_INVALID    = '无效的appid';
+    const CODE_SIGN_FAIL       = 10014;
+    const ERR_SIGN_FAIL        = '签名错误';
 
     /**
      * 其它常量

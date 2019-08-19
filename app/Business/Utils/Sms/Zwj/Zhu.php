@@ -49,7 +49,7 @@ class Zhu
                 $res[] = $params['prefix'];
                 break;
             default:
-                throw new \LogicException(Unique::ERR_SMSTMP_NOTEXIST, Unique::ERR_SMSTMP_NOTEXIST);
+                throw new \LogicException(Unique::ERR_SMSTMP_NOTEXIST, Unique::CODE_SMSTMP_NOTEXIST);
                 break;
         }
 

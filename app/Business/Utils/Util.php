@@ -43,4 +43,32 @@ class Util
         return md5($str . microtime() . mt_rand());
     }
 
+    public static function genSign($params, $appSecret)
+    {
+        $str = '';
+        ksort($params);
+        foreach ($params as $k => $v) {
+            $value = $v;
+
+            if (is_array($value)) {
+                $value = json_encode($value,JSON_UNESCAPED_UNICODE);
+            }
+
+            $value = trim($value);
+
+            if($value == '' ) {
+                continue;
+            }
+
+            $str .= $k . '=' . $value . "#";
+        }
+
+        $str .= $appSecret;
+        return md5($str);
+    }
+
+    public static function verifySign($params, $appSecret, $sign)
+    {
+        return $sign === self::genSign($params, $appSecret);
+    }
 }
