@@ -43,7 +43,12 @@ class AuthService
             return false;
         }
 
-        if(! self::cacheToken($token, $userInfo) ){
+        $res['id']          = $userInfo['id'];
+        $res['name']        = $userInfo['name'];
+        $res['tel']         = $userInfo['tel'];
+        $res['visitor']     = $userInfo['visitor'];
+
+        if(! self::cacheToken($token, $res) ){
             return false;
         }
 
