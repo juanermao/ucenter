@@ -74,7 +74,7 @@ class AuthService
     public static function verifyToken($token)
     {
         $key = self::getTokenKey($token);
-        $userInfo = Request::get($key);
+        $userInfo = Redis::get($key);
         if (! $userInfo) {
             return false;
         }
