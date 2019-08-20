@@ -33,12 +33,12 @@ class VerifySign
             'sign'  => 'required',
         ];
         $message = [
-            'appid.required' => 'appid必须',
-            'sign.required'  => 'sign必须',
+            'appid.required' => 'appid 必须',
+            'sign.required'  => 'sign 必须',
         ];
-        $this->formValidate($request->all(), $rules, $message);
+        $this->formValidate($request->input(), $rules, $message);
 
-        $inputs = $request->all();
+        $inputs = $request->input();
         $sign = $inputs['sign'];
         unset($inputs['sign']);
 

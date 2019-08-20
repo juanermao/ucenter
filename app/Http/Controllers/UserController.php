@@ -24,7 +24,7 @@ class UserController extends Controller
             'tel.min'       => '手机号长度不能小于11',
             'code.required' => '验证码必须',
         ];
-        $inputs = $this->formValidate($request->all(), $rules, $message);
+        $inputs = $this->formValidate($request->input(), $rules, $message);
         // 1.校验验证码
         if(! SmsService::getInstance()->verifyCode($inputs['tel'], $inputs['code'], true) ) {
             throw new \LogicException(Unique::ERR_SMSCODE_ERR ,Unique::CODE_SMSCODE_ERR);
@@ -43,7 +43,7 @@ class UserController extends Controller
         }
 
         // 3.获取code
-        $code = AuthService::getCode($userInfo['id']);
+        $code = AuthService::setCode($userInfo['id']);
         if (! $code) {
             throw new \LogicException(Unique::ERR_USERLOGIN_CODE, Unique::CODE_USERLOGIN_CODE);
         }

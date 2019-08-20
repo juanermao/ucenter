@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Business\Services\AuthService;
+use App\Business\Services\DeveloperService;
 use App\Business\Utils\Unique;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class AuthController extends Controller
 
     public function getAccessToken(Request $request)
     {
-        $rule = [
+        $rules = [
             'appid' => 'required',
             'code'  => 'required',
         ];
@@ -22,12 +23,12 @@ class AuthController extends Controller
             'appid.required' => 'appid 必须',
             'code.required'  => 'code 必须',
         ];
-        $inputs = $this->formValidate($request->all(), $rule, $message);
+        $inputs = $this->formValidate($request->input(), $rules, $message);
         if (! AuthService::verifyCode($inputs['code']) ) {
             throw new \LogicException(Unique::ERR_VERIFYCODE_FAIL, Unique::CODE_VERIFYCODE_FAIL);
         }
 
-        $token = AuthService::getToken($inputs['code']);
+        $token = AuthService::setToken($inputs['code']);
         if (! $token) {
             throw new \LogicException(Unique::ERR_GETTOKEN_FAIL, Unique::CODE_GETTOKEN_FAIL);
         }
@@ -36,4 +37,22 @@ class AuthController extends Controller
             'access_token' => $token
         ]);
     }
+
+    public function getUserInfo(Request $request)
+    {
+        $rules = [
+            'access_token' => 'required',
+        ];
+        $message = [
+            'access_token.required' => 'access_token 必须',
+        ];
+        $inputs = $this->formValidate($request->input(), $rules, $message);
+        $userInfo = AuthService::verifyToken($inputs['access_token']);
+        if (! $userInfo) {
+            throw new \LogicException(Unique::ERR_TOKEN_FAIL, Unique::CODE_TOKEN_FAIL);
+        }
+
+        return $this->echoJson($userInfo);
+    }
+
 }

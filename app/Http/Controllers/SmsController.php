@@ -10,7 +10,7 @@ class SmsController extends Controller
 {
     public function sendCode(Request $request)
     {
-        $inputs = $request->all();
+        $inputs = $request->input();
         $rules  = [
             'tel'  => 'required|max:11|min:11',
         ];

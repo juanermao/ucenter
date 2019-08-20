@@ -51,7 +51,8 @@
 <script>
     $("#login .sendSms").click(function () {
         var tel = $(".tel input").val();
-        var params = {"tel": tel};
+        var ts = Date.parse(new Date())/1000;
+        var params = {"tel": tel, "ts": ts};
         $.get('/api/sms/send', params, function (data) {
             console.log('===send sms===' + data);
 
@@ -66,7 +67,8 @@
 
     $("#login .getSms").click(function () {
         var tel = $(".tel input").val();
-        var params = {"tel": tel};
+        var ts = Date.parse(new Date())/1000;
+        var params = {"tel": tel, "ts": ts};
         $.get('/api/get/sms/code', params, function (data) {
             console.log('===get sms===' + data);
 
@@ -81,9 +83,10 @@
 
     $("#login .smslogin").click(function () {
         var tel = $(".tel input").val();
+        var ts = Date.parse(new Date())/1000;
         var code = $(".smsCode input").val();
 
-        var params = {"tel": tel, "code": code};
+        var params = {"tel": tel, "code": code, "ts": ts};
         $.get('/api/sms/login', params, function (data) {
             console.log('===sms login===' + data);
 
@@ -94,9 +97,11 @@
 
             alert('登录成功');
             var code = data.data.code;
+            var appid = getQueryString('appid');
             var redirect_url = getQueryString('redirect_url');
+            var state = getQueryString('state');
             if (redirect_url) {
-                redirect_url = redirect_url + "?code=" + code;
+                redirect_url = redirect_url + "?code=" + code + '&appid=' + appid + '&state=' + state;
                 console.log("===redirect_url===" + redirect_url);
                 location.href = redirect_url;
             }else{

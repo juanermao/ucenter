@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\App;
 class TestController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
         // mysql
         $users = DB::table('users')->get();
@@ -34,30 +34,31 @@ class TestController extends Controller
 
     public function getSmsCode(Request $request)
     {
-        $rule = [
+        $rules = [
             'tel' => 'required'
         ];
         $message = [
             'tel.required' => '手机号必须'
         ];
-        $inputs = $this->formValidate($request->input(), $rule, $message);
+        $inputs = $this->formValidate($request->input(), $rules, $message);
         $code = SmsService::getInstance()->getCode($inputs['tel']);
         return $this->echoJson(['code' => $code]);
     }
 
     public function callback(Request $request)
     {
-        $rule = [
+        $rules = [
             'code' => 'required',
         ];
         $message = [
             'code.required' => 'code必须',
         ];
-        $inputs = $this->formValidate($request->input(), $rule, $message);
+        $inputs = $this->formValidate($request->input(), $rules, $message);
         $url = env('APP_URL') . '/api/auth/getAccessToken';
         $params = [
             'code'  => $inputs['code'],
             'appid' => 'test',
+            'ts'    => time(),
         ];
         $params['sign'] = Util::genSign($params, '123456');
         $res = HttpUtil::post($url, $params);
