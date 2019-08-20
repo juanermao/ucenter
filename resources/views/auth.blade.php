@@ -99,9 +99,10 @@
             var code = data.data.code;
             var appid = getQueryString('appid');
             var redirect_url = getQueryString('redirect_url');
+            var ts = Date.parse(new Date())/1000;
             var state = getQueryString('state');
             if (redirect_url) {
-                redirect_url = redirect_url + "?code=" + code + '&appid=' + appid + '&state=' + state;
+                redirect_url = redirect_url + "?code=" + code + '&appid=' + appid + '&state=' + state + '&ts=' + ts;
                 console.log("===redirect_url===" + redirect_url);
                 location.href = redirect_url;
             }else{
