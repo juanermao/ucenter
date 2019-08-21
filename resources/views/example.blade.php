@@ -12,8 +12,8 @@
 <div id="app">
     <login-component></login-component>
 </div>
-<script src="{{ mix('js/app.js') }}"></script>
 <script src="{{ mix('js/util.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 
 </body>
 </html>
