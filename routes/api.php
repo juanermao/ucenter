@@ -32,7 +32,6 @@ Route::middleware([])->group(function () {
 /**
  * 给服务端提供的接口
  * TODO 签名，白名单
- * TODO access_token与uid一一对应
  */
 Route::middleware([
     'verifySign'

@@ -39,6 +39,8 @@ class TokenService
             return false;
         }
 
+        // 删除code
+        CodeService::delCodeById($codeRes['id']);
         return $token;
     }
 

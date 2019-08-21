@@ -43,11 +43,12 @@ class CodeModel extends Model
 
     public static function modifyCodeByUid($uid, $code)
     {
-        if(! static::where(['uid' => $uid])->update(['code' => $code]) ) {
-            return false;
-        }
+        return static::where(['uid' => $uid])->update(['code' => $code]);
+    }
 
-        return true;
+    public static function delCodeById($id)
+    {
+        return static::where(['id' => $id])->delete();
     }
 
 }

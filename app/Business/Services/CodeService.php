@@ -55,4 +55,9 @@ class CodeService
     {
         return CodeModel::getUidByCode($code);
     }
+
+    public static function delCodeById($id)
+    {
+        return CodeModel::delCodeById($id);
+    }
 }

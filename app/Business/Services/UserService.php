@@ -13,13 +13,8 @@ class UserService
     const COOKIE_TOKEN_KEY      = 'api_token';
     const CONFIG_USERNAME_TITLE = 'incr_username';
 
-    /**
-     * 注册来源
-     * USER_ADD_TEL - 手机号注册
-     * USER_ADD_VISITOR - 游客注册
-     */
-    const USER_ADD_TEL          = 1;
-    const USER_ADD_VISITOR      = 2;
+    const USER_ADD_TEL          = 1;    // 手机号注册
+    const USER_ADD_VISITOR      = 2;    // 游客注册
 
     public static function addUser($user, $from)
     {
