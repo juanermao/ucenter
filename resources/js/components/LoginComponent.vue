@@ -131,9 +131,12 @@
                             return;
                         }
 
+                        var code = response.data.data.code;
+
                         this.$Message.info( "登录成功，正在跳转..." );
                         var state = getQueryString('state');
                         var appid = getQueryString('appid');
+                        var redirect_url = getQueryString('redirect_url');
                         var ts = Date.parse(new Date())/1000;
 
                         if (redirect_url) {

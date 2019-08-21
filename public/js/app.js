@@ -2043,10 +2043,13 @@ __webpack_require__.r(__webpack_exports__);
           return;
         }
 
+        var code = response.data.data.code;
+
         _this3.$Message.info("登录成功，正在跳转...");
 
         var state = getQueryString('state');
         var appid = getQueryString('appid');
+        var redirect_url = getQueryString('redirect_url');
         var ts = Date.parse(new Date()) / 1000;
 
         if (redirect_url) {
@@ -92743,7 +92746,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/guanliyuan/code/ucenter/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/duanmusuyue/code/ucenter/resources/js/app.js */"./resources/js/app.js");
 
 
 /***/ })

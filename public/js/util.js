@@ -140,8 +140,8 @@ function getCookie(cname) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/guanliyuan/code/ucenter/resources/js/util.js */"./resources/js/util.js");
-module.exports = __webpack_require__(/*! /Users/guanliyuan/code/ucenter/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/duanmusuyue/code/ucenter/resources/js/util.js */"./resources/js/util.js");
+module.exports = __webpack_require__(/*! /Users/duanmusuyue/code/ucenter/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
