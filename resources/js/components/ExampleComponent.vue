@@ -1,16 +1,12 @@
 <template>
-    <div>
-        <el-radio class="radio" v-model="radio" label="1">备选项</el-radio>
-        <el-radio class="radio" v-model="radio" label="2">备选项</el-radio>
-    </div>
+    <i-input :value.sync="value" placeholder="请输入..." style="width: 300px"></i-input>
 </template>
-
 <script>
     export default {
         data () {
             return {
-                radio: '1'
-            };
+                value: ''
+            }
         }
     }
 </script>

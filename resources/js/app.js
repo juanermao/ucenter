@@ -19,13 +19,15 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI);
+import Vue from 'vue';
+import IViewUI from 'iview';
+import 'iview/dist/styles/iview.css';
+import axios from 'axios';
+Vue.use(IViewUI);
+import { Message } from 'iview';
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('header-component', require('./components/layout/HeaderComponent.vue').default);
-Vue.component('main-component', require('./components/layout/MainComponent.vue').default);
+Vue.component('login-component', require('./components/LoginComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
