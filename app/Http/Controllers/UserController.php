@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Business\Services\AuthService;
+use App\Business\Services\CodeService;
 use App\Business\Services\SmsService;
 use App\Business\Services\UserService;
 use App\Business\Utils\Unique;
@@ -43,7 +44,7 @@ class UserController extends Controller
         }
 
         // 3.获取code
-        $code = AuthService::setCode($userInfo['id']);
+        $code = CodeService::getCode($userInfo['id']);
         if (! $code) {
             throw new \LogicException(Unique::ERR_USERLOGIN_CODE, Unique::CODE_USERLOGIN_CODE);
         }

@@ -63,6 +63,10 @@ class TestController extends Controller
         $params['sign'] = Util::genSign($params, '123456');
         $res = HttpUtil::post($url, $params);
         $res = json_decode($res, true);
+        print_r($res);
+        if ($res['errno'] != 0) {
+            die;
+        }
 
         $accessToken = $res['data']['access_token'];
         $url2 = env('APP_URL') . '/api/auth/userInfo';

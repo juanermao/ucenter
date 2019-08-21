@@ -2,14 +2,13 @@
 
 namespace App\Business\Models;
 
-use App\Business\Services\UserService;
 use Illuminate\Database\Eloquent\Model;
 
-class CodeModel extends Model
+class TokenModel extends Model
 {
-    protected $table = 'uid_codes';
+    protected $table = 'uid_tokens';
 
-    public static function getCodeByUid($uId)
+    public static function getTokenByUid($uId)
     {
         $res = static::where(['uid' => $uId])->first();
         if (! $res) {
@@ -19,9 +18,9 @@ class CodeModel extends Model
         return $res->toArray();
     }
 
-    public static function getUidByCode($code)
+    public static function getUidByToken($token)
     {
-        $res = static::where(['code' => $code])->first();
+        $res = static::where(['token' => $token])->first();
         if (! $res) {
             return false;
         }
@@ -29,11 +28,11 @@ class CodeModel extends Model
         return $res->toArray();
     }
 
-    public static function addCode($uid, $code)
+    public static function addToken($uid, $token)
     {
         $model = new static();
         $model->uid = $uid;
-        $model->code = $code;
+        $model->token = $token;
         if (! $model->save()) {
             return false;
         }
@@ -41,9 +40,9 @@ class CodeModel extends Model
         return $model->toArray();
     }
 
-    public static function modifyCodeByUid($uid, $code)
+    public static function modifyTokenByUid($uid, $token)
     {
-        if(! static::where(['uid' => $uid])->update(['code' => $code]) ) {
+        if(! static::where(['uid' => $uid])->update(['token' => $token]) ) {
             return false;
         }
 

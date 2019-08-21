@@ -2,7 +2,9 @@
 namespace App\Http\Controllers;
 
 use App\Business\Services\AuthService;
+use App\Business\Services\CodeService;
 use App\Business\Services\DeveloperService;
+use App\Business\Services\TokenService;
 use App\Business\Utils\Unique;
 use Illuminate\Http\Request;
 
@@ -24,11 +26,11 @@ class AuthController extends Controller
             'code.required'  => 'code 必须',
         ];
         $inputs = $this->formValidate($request->input(), $rules, $message);
-        if (! AuthService::verifyCode($inputs['code']) ) {
+        if (! CodeService::verifyCode($inputs['code']) ) {
             throw new \LogicException(Unique::ERR_VERIFYCODE_FAIL, Unique::CODE_VERIFYCODE_FAIL);
         }
 
-        $token = AuthService::setToken($inputs['code']);
+        $token = TokenService::getToken($inputs['code']);
         if (! $token) {
             throw new \LogicException(Unique::ERR_GETTOKEN_FAIL, Unique::CODE_GETTOKEN_FAIL);
         }
@@ -47,7 +49,7 @@ class AuthController extends Controller
             'access_token.required' => 'access_token 必须',
         ];
         $inputs = $this->formValidate($request->input(), $rules, $message);
-        $userInfo = AuthService::verifyToken($inputs['access_token']);
+        $userInfo = TokenService::verifyToken($inputs['access_token']);
         if (! $userInfo) {
             throw new \LogicException(Unique::ERR_TOKEN_FAIL, Unique::CODE_TOKEN_FAIL);
         }
