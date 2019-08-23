@@ -4,12 +4,20 @@ namespace App\Business\Utils;
 class Unique
 {
     /**
+     * 数据表标识
+     */
+    const TABLE_COMICS           = 'comics';
+    const TABLE_COMICS_LISTS     = 'comic_lists';
+    const TABLE_COMIC_TAGS       = 'comic_tags';
+    const TABLE_TAGS             = 'tags';
+
+
+    /**
      * 日志标识
      */
-    const LOG_SQL  = '[SQL]';
-    const LOG_CURL = '[CURL]';
-
-
+    const LOG_SQL    = '[SQL]';
+    const LOG_CURL   = '[CURL]';
+    const LOG_ACCESS = '[ACCESS]';
 
     /**
      * 错误码

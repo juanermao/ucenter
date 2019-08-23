@@ -19,8 +19,6 @@ use Illuminate\Http\Request;
  * 给客户端提供的接口
  */
 Route::middleware([])->group(function () {
-    // 未登录时的跳转地址
-    Route::get('/user/nologin', 'UserController@noLogin')->name('login');
     // 发送短信
     Route::get('/sms/send', 'SmsController@sendCode');
     // 手机号登录
@@ -47,6 +45,14 @@ Route::middleware([
 Route::middleware('auth:api')->group(function () {
     // 获取用户信息
     Route::get('/user/info', 'UserController@info');
+
+    /**
+     * 漫画相关接口
+     */
+    // 获取漫画列表
+    Route::get('/comic/page', 'Comic\ComicController@page');
+    // 获取漫画分类
+    Route::get('/comic/tags', 'Comic\ComicController@getTags');
 });
 
 /**

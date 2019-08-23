@@ -1,3 +1,9 @@
+<style>
+    .card-login {
+        margin: 50px 0 0 0;
+    }
+</style>
+
 <template>
     <Row
             type="flex"
@@ -6,7 +12,12 @@
             class="code-row-bg"
     >
         <i-col span="12">
-            <Card>
+            <Card class="card-login">
+                <p slot="title">
+                    <Icon type="ios-film-outline"></Icon>
+                    用户登录
+                </p>
+
                 <i-form
                         :model="formValidate"
                         :rules="ruleValidate"

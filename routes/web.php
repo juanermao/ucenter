@@ -19,4 +19,6 @@ Route::get('/example', function () {
     return view('example');
 });
 
+// 未登录时的跳转地址
+Route::get('/user/nologin', 'UserController@noLogin')->name('login');
 Route::get('/auth/login', 'AuthController@login');
