@@ -1,8 +1,8 @@
 <?php
 namespace App\Business\Services;
 
-use App\Business\Models\CodeModel;
-use App\Business\Models\TokenModel;
+use App\Business\Models\UidCodes;
+use App\Business\Models\UidTokens;
 use App\Business\Utils\Util;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
@@ -26,13 +26,13 @@ class TokenService
             return false;
         }
 
-        $tokenRes = TokenModel::getTokenByUid($uId);
+        $tokenRes = UidTokens::getTokenByUid($uId);
         if (! $tokenRes) {
             // 添加
-            $res = TokenModel::addToken($uId, $token);
+            $res = UidTokens::addToken($uId, $token);
         }else{
             // 修改
-            $res = TokenModel::modifyTokenByUid($uId, $token);
+            $res = UidTokens::modifyTokenByUid($uId, $token);
         }
 
         if (! $res) {

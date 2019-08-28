@@ -2,12 +2,12 @@
 
 namespace App\Business\Models\Comic;
 
+use App\Business\Utils\Unique;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class ComicTagsModel extends Model
+class ComicLists extends Model
 {
-    protected $table = 'comic_tags';
-
+    protected $table = Unique::TABLE_COMICS_LISTS;
 
 }

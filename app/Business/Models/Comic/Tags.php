@@ -4,8 +4,9 @@ namespace App\Business\Models\Comic;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Business\Models\Comic\ComicTags;
 
-class TagModel extends Model
+class Tags extends Model
 {
     protected $table = 'tags';
 
@@ -18,4 +19,6 @@ class TagModel extends Model
 
         return $res->toArray();
     }
+
+
 }

@@ -5,7 +5,7 @@ namespace App\Business\Models;
 use App\Business\Services\UserService;
 use Illuminate\Database\Eloquent\Model;
 
-class CodeModel extends Model
+class UidCodes extends Model
 {
     protected $table = 'uid_codes';
 

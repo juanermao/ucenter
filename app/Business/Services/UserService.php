@@ -2,8 +2,8 @@
 
 namespace App\Business\Services;
 
-use App\Business\Models\ConfigModel;
-use App\Business\Models\UserModel;
+use App\Business\Models\Configs;
+use App\Business\Models\Users;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
@@ -23,11 +23,11 @@ class UserService
         switch ($from){
             case self::USER_ADD_TEL:
                 $user['name'] = self::getRandName();
-                $userInfo = UserModel::addTelUser($user);
+                $userInfo = Users::addTelUser($user);
                 break;
             case self::USER_ADD_VISITOR:
                 $user['name'] = self::getRandName();
-                $userInfo = UserModel::addVisitorUser($user);
+                $userInfo = Users::addVisitorUser($user);
                 break;
             default:
                 break;
@@ -47,13 +47,13 @@ class UserService
 
     public static function saveLoginInfo($userInfo)
     {
-        $user = UserModel::getUserById($userInfo['id']);
+        $user = Users::getUserById($userInfo['id']);
         if (! empty($user['api_token'])) {
             self::clearCacheToken($user['api_token']);
         }
 
         $token = md5( sprintf('%d#%s#%d', $user['id'], $user['name'], time()) );
-        if (! UserModel::setTokenById($user['id'], $token)) {
+        if (! Users::setTokenById($user['id'], $token)) {
             return false;
         }
 
@@ -97,7 +97,7 @@ class UserService
 
     public static function getRandName()
     {
-        $incrId = ConfigModel::getConfigByTitle(self::CONFIG_USERNAME_TITLE);
+        $incrId = Configs::getConfigByTitle(self::CONFIG_USERNAME_TITLE);
         if (! $incrId) {
             return null;
         }
@@ -122,7 +122,7 @@ class UserService
      * @return mixed
      */
     public static function getUserByTel($tel){
-        return UserModel::getUserByTel($tel);
+        return Users::getUserByTel($tel);
     }
 
     /**
@@ -133,7 +133,7 @@ class UserService
      */
     public static function getUserByName($name)
     {
-        return UserModel::getUserByName($name);
+        return Users::getUserByName($name);
     }
 
     /**
@@ -144,11 +144,11 @@ class UserService
      */
     public static function getUserByVisitor($visitor)
     {
-        return UserModel::getUserByVisitor($visitor);
+        return Users::getUserByVisitor($visitor);
     }
 
     public static function getUserById($uId)
     {
-        return UserModel::getUserById($uId);
+        return Users::getUserById($uId);
     }
 }

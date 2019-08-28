@@ -1,7 +1,7 @@
 <?php
 namespace App\Business\Services;
 
-use App\Business\Models\CodeModel;
+use App\Business\Models\UidCodes;
 use App\Business\Utils\Util;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
@@ -17,9 +17,9 @@ class CodeService
         $code = Util::randMd5($uId);
         $codeRes = self::getCodeByUid($uId);
         if(! $codeRes ){
-            $res = CodeModel::addCode($uId, $code);
+            $res = UidCodes::addCode($uId, $code);
         }else{
-            $res = CodeModel::modifyCodeByUid($uId, $code);
+            $res = UidCodes::modifyCodeByUid($uId, $code);
         }
 
         if (! $res) {
@@ -48,16 +48,16 @@ class CodeService
 
     public static function getCodeByUid($uId)
     {
-        return CodeModel::getCodeByUid($uId);
+        return UidCodes::getCodeByUid($uId);
     }
 
     public static function getUidByCode($code)
     {
-        return CodeModel::getUidByCode($code);
+        return UidCodes::getUidByCode($code);
     }
 
     public static function delCodeById($id)
     {
-        return CodeModel::delCodeById($id);
+        return UidCodes::delCodeById($id);
     }
 }

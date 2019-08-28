@@ -5,7 +5,7 @@ namespace App\Business\Models;
 use App\Business\Services\UserService;
 use Illuminate\Database\Eloquent\Model;
 
-class UserModel extends Model
+class Users extends Model
 {
     protected $table = 'users';
 

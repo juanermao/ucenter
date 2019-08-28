@@ -4,7 +4,7 @@ namespace App\Business\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DeveloperModel extends Model
+class DeveloperConfigs extends Model
 {
     protected $table = 'developer_configs';
 

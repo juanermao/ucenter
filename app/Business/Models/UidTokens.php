@@ -4,7 +4,7 @@ namespace App\Business\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TokenModel extends Model
+class UidTokens extends Model
 {
     protected $table = 'uid_tokens';
 

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Business\Models\Comic\Comics;
+use App\Business\Models\Comic\ComicTags;
+use App\Business\Models\Comic\Tags;
 use App\Business\Services\AuthService;
 use App\Business\Services\SmsService;
 use App\Business\Utils\HttpUtil;
@@ -13,7 +16,10 @@ use Illuminate\Support\Facades\App;
 
 class TestController extends Controller
 {
-    //
+    /**
+     * @param Request $request
+     * 测试mysql、redis等服务、配置是否正常
+     */
     public function index(Request $request)
     {
         // mysql
@@ -32,6 +38,11 @@ class TestController extends Controller
         echo date('Y-m-d H:i:s');
     }
 
+    /**
+     * @param Request $request
+     * @return $this|\Illuminate\Http\JsonResponse
+     * 用于"模拟发送手机验证码"后直接获取到对应的验证码
+     */
     public function getSmsCode(Request $request)
     {
         $rules = [
@@ -45,6 +56,10 @@ class TestController extends Controller
         return $this->echoJson(['code' => $code]);
     }
 
+    /**
+     * @param Request $request
+     * auth 测试
+     */
     public function callback(Request $request)
     {
         $rules = [
@@ -78,5 +93,13 @@ class TestController extends Controller
         $params2['sign'] = Util::genSign($params2, '123456');
         $res2 = HttpUtil::post($url2, $params2);
         print_r(json_decode($res2, true));
+    }
+
+    /**
+     * 关联模型的使用
+     */
+    public function getComicTags()
+    {
+
     }
 }

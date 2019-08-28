@@ -49,17 +49,23 @@ Route::middleware('auth:api')->group(function () {
     /**
      * 漫画相关接口
      */
-    // 获取漫画列表
-    Route::get('/comic/page', 'Comic\ComicController@page');
     // 获取漫画分类
     Route::get('/comic/tags', 'Comic\ComicController@getTags');
+    // 获取漫画的分页信息
+    Route::get('/comic/page', 'Comic\ComicController@page');
+    // 获取某漫画的章节信息
+    Route::get('/comic/list', 'Comic\ComicController@list');
+    // 获取某章节的详细信息
+    Route::get('/comic/detail', 'Comic\ComicController@detail');
 });
 
 /**
- * 测试接口
+ * 自测试使用接口
  */
 Route::middleware([])->group(function () {
     Route::post('/test/index', 'TestController@index');
     Route::get('/get/sms/code', 'TestController@getSmsCode');
     Route::get('/third/callback', 'TestController@callback');
+
+    Route::get('/test/tags', 'TestController@getComicTags');
 });
