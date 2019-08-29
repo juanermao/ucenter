@@ -27,7 +27,13 @@ Vue.use(IViewUI);
 import { Message } from 'iview';
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// 登录模块
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
+// 首页模块
+Vue.component('index-header-component', require('./components/index/HeaderComponent.vue').default);
+Vue.component('index-carousel-component', require('./components/index/CarouselComponent.vue').default);
+Vue.component('index-main-component', require('./components/index/MainComponent.vue').default);
+Vue.component('index-footer-component', require('./components/index/FooterComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
