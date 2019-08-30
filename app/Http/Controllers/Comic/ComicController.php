@@ -75,4 +75,13 @@ class ComicController extends Controller
         $res = ComicService::detail($inputs['comic_list_id']);
         return $this->echoJson($res);
     }
+
+    /**
+     * 获取首页信息
+     */
+    public function getIndexComic(Request $request)
+    {
+        $res = ComicService::getHotEndsId();
+        print_r($res);
+    }
 }

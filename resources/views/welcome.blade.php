@@ -1,8 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="{{ config('app.locale') }}">
 <head>
-    <title>喵物曼 - 首页</title>
-    <script src="/js/jquery/jquery.js"></script>
-    <script src="/js/util.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{csrf_token()}}">
+    <title>喵特曼 - 首页</title>
     <style>
         #app {
             width: 1000px;
@@ -18,6 +21,8 @@
         <index-main-component></index-main-component>
         <index-footer-component></index-footer-component>
     </div>
+
+    <script src="{{ mix('js/util.js') }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

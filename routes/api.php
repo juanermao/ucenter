@@ -31,6 +31,7 @@ Route::middleware([])->group(function () {
  * 给服务端提供的接口
  * TODO 签名，白名单
  * TODO 缓存用户信息
+ * TODO CDN，阿里云，七牛
  */
 Route::middleware([
     'verifySign'
@@ -57,6 +58,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/comic/list', 'Comic\ComicController@list');
     // 获取某章节的详细信息
     Route::get('/comic/detail', 'Comic\ComicController@detail');
+    // 获取首页所有信息
+    Route::get('/comic/index', 'Comic\ComicController@getIndexComic');
 });
 
 /**

@@ -71,4 +71,5 @@ class Util
     {
         return $sign === self::genSign($params, $appSecret);
     }
+
 }

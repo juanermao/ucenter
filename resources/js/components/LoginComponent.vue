@@ -92,8 +92,8 @@
         },
         methods: {
             sendCode () {
-                var ts = Date.parse(new Date())/1000;
-                var params = {"tel": this.formValidate.tel, "ts": ts};
+                let ts = Date.parse(new Date())/1000;
+                let params = {"tel": this.formValidate.tel, "ts": ts};
                 axios.get('/api/sms/send', { params: params })
                 .then((response) => {
                     if (response.status !== 200) {
@@ -110,8 +110,8 @@
                 });
             },
             getCode() {
-                var ts = Date.parse(new Date())/1000;
-                var params = {"tel": this.formValidate.tel, "ts": ts};
+                let ts = Date.parse(new Date())/1000;
+                let params = {"tel": this.formValidate.tel, "ts": ts};
                 axios.get('/api/get/sms/code', { params: params })
                     .then((response) => {
                         if (response.status !== 200) {
@@ -128,8 +128,8 @@
                     });
             },
             smsLogin() {
-                var ts = Date.parse(new Date())/1000;
-                var params = {"tel": this.formValidate.tel, "code": this.formValidate.code, "ts": ts};
+                let ts = Date.parse(new Date())/1000;
+                let params = {"tel": this.formValidate.tel, "code": this.formValidate.code, "ts": ts};
                 axios.get('/api/sms/login', { params: params })
                     .then((response) => {
                         if (response.status !== 200) {
@@ -142,13 +142,13 @@
                             return;
                         }
 
-                        var code = response.data.data.code;
+                        let code = response.data.data.code;
 
                         this.$Message.info( "登录成功，正在跳转..." );
-                        var state = getQueryString('state');
-                        var appid = getQueryString('appid');
-                        var redirect_url = getQueryString('redirect_url');
-                        var ts = Date.parse(new Date())/1000;
+                        let state = getQueryString('state');
+                        let appid = getQueryString('appid');
+                        let redirect_url = getQueryString('redirect_url');
+                        let ts = Date.parse(new Date())/1000;
 
                         if (redirect_url) {
                             redirect_url = redirect_url + "?code=" + code + '&appid=' + appid + '&state=' + state + '&ts=' + ts;
